@@ -1,0 +1,36 @@
+.recipe-card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+  .recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  }
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.4em 0.6em;
+}
+
+.badge-vegan {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.badge-glutenfree {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.badge-dairyfree {
+  background-color: #e0f7fa;
+  color: #00695c;
+}
+
+.badge-vegetarian {
+  background-color: #f8d7da;
+  color: #721c24;
+}

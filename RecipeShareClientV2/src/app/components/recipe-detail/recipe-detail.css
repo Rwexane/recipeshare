@@ -1,0 +1,9 @@
+:root {
+  --bs-success-subtle: #d2f4dc;
+  --bs-success-emphasis: #2f855a;
+}
+
+.badge.bg-success-subtle {
+  background-color: var(--bs-success-subtle);
+  color: var(--bs-success-emphasis);
+}

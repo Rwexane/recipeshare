@@ -1,0 +1,111 @@
+
+<div *ngIf="loading" class="text-center my-4">
+  <div class="spinner-border text-primary" role="status"></div>
+  <p class="mt-2 text-muted">Loading recipe...</p>
+</div>
+
+<div *ngIf="error" class="alert alert-danger text-center">
+  {{ error }}
+</div>
+
+<!-- API Validation Errors -->
+<div *ngIf="Object.keys(validationErrors || {}).length" class="alert alert-danger">
+  <ul class="mb-0">
+    <li *ngFor="let entry of validationErrors | keyvalue">
+      <strong>{{ entry.key }}:</strong>
+      <ul>
+        <li *ngFor="let msg of entry.value">{{ msg }}</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<form [formGroup]="recipeForm"
+      (ngSubmit)="onSubmit()"
+      *ngIf="!loading"
+      class="p-4 shadow-sm rounded bg-light"
+      novalidate>
+  <h3 class="mb-4 text-primary">
+    {{ isEditMode ? '✏️ Edit Recipe' : '📝 Create New Recipe' }}
+  </h3>
+
+  <!-- Title -->
+  <div class="mb-3">
+    <label for="title" class="form-label fw-semibold">🍽️ Title *</label>
+    <input id="title" class="form-control" formControlName="title" placeholder="e.g. Creamy Mushroom Pasta" />
+    <div *ngIf="recipeForm.get('title')?.invalid && recipeForm.get('title')?.touched" class="text-danger small mt-1">
+      Title is required.
+    </div>
+    <div *ngIf="validationErrors['Title']" class="text-danger small mt-1">
+      <div *ngFor="let err of validationErrors['Title']">{{ err }}</div>
+    </div>
+  </div>
+
+  <!-- Ingredients -->
+  <div class="mb-3">
+    <label for="ingredients" class="form-label fw-semibold">🧂 Ingredients *</label>
+    <textarea id="ingredients"
+              class="form-control"
+              formControlName="ingredients"
+              rows="3"
+              placeholder="List the ingredients here..."></textarea>
+    <div *ngIf="recipeForm.get('ingredients')?.invalid && recipeForm.get('ingredients')?.touched" class="text-danger small mt-1">
+      Ingredients are required.
+    </div>
+    <div *ngIf="validationErrors['Ingredients']" class="text-danger small mt-1">
+      <div *ngFor="let err of validationErrors['Ingredients']">{{ err }}</div>
+    </div>
+  </div>
+
+  <!-- Steps -->
+  <div class="mb-3">
+    <label for="steps" class="form-label fw-semibold">👨‍🍳 Steps *</label>
+    <textarea id="steps"
+              class="form-control"
+              formControlName="steps"
+              rows="4"
+              placeholder="Describe how to prepare the recipe..."></textarea>
+    <div *ngIf="recipeForm.get('steps')?.invalid && recipeForm.get('steps')?.touched" class="text-danger small mt-1">
+      Steps are required.
+    </div>
+    <div *ngIf="validationErrors['Steps']" class="text-danger small mt-1">
+      <div *ngFor="let err of validationErrors['Steps']">{{ err }}</div>
+    </div>
+  </div>
+
+  <!-- Cooking Time -->
+  <div class="mb-3">
+    <label for="cookingTime" class="form-label fw-semibold">⏱️ Cooking Time (minutes) *</label>
+    <input type="number"
+           id="cookingTime"
+           class="form-control"
+           formControlName="cookingTime"
+           min="1"
+           placeholder="e.g. 30" />
+    <div *ngIf="recipeForm.get('cookingTime')?.invalid && recipeForm.get('cookingTime')?.touched" class="text-danger small mt-1">
+      Must be at least 1 minute.
+    </div>
+    <div *ngIf="validationErrors['CookingTime']" class="text-danger small mt-1">
+      <div *ngFor="let err of validationErrors['CookingTime']">{{ err }}</div>
+    </div>
+  </div>
+
+  <!-- Dietary Tags -->
+  <div class="mb-4">
+    <label for="dietaryTags" class="form-label fw-semibold">🥗 Dietary Tags</label>
+    <input id="dietaryTags"
+           class="form-control"
+           formControlName="dietaryTags"
+           placeholder="e.g. Vegan, Gluten-Free" />
+    <div *ngIf="validationErrors['DietaryTags']" class="text-danger small mt-1">
+      <div *ngFor="let err of validationErrors['DietaryTags']">{{ err }}</div>
+    </div>
+  </div>
+
+  <div class="d-flex gap-3">
+    <button type="submit" class="btn btn-success" [disabled]="recipeForm.invalid">
+      {{ isEditMode ? '💾 Update' : '✅ Create' }} Recipe
+    </button>
+    <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">❌ Cancel</button>
+  </div>
+</form>
