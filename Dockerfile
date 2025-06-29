@@ -7,6 +7,8 @@ COPY RecipeShareClientV2 ./RecipeShareClientV2
 WORKDIR /app/RecipeShareClientV2
 # Install Node.js dependencies for the Angular project
 RUN npm install
+# Install Angular CLI globally so 'ng' command is available and executable
+RUN npm install -g @angular/cli
 # Build the Angular application for production.
 # This command will generate the compiled static files in the 'dist/RecipeShareClientV2/browser' directory
 # within this build stage's container.
