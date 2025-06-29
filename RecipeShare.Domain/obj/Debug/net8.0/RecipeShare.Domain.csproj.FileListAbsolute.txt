@@ -1,0 +1,11 @@
+C:\Projects\RecipeShare\RecipeShare.Domain\bin\Debug\net8.0\RecipeShare.Domain.deps.json
+C:\Projects\RecipeShare\RecipeShare.Domain\bin\Debug\net8.0\RecipeShare.Domain.dll
+C:\Projects\RecipeShare\RecipeShare.Domain\bin\Debug\net8.0\RecipeShare.Domain.pdb
+C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.AssemblyInfoInputs.cache
+C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.AssemblyInfo.cs
+C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.csproj.CoreCompileInputs.cache
+C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.dll
+C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\refint\RecipeShare.Domain.dll
+C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.pdb
+C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\ref\RecipeShare.Domain.dll

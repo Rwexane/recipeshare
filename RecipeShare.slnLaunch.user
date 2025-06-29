@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "RecipeShare.API\\RecipeShare.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RecipeShareClientV2\\",
+        "Action": "Start"
+      }
+    ]
+  }
+]

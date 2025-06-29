@@ -1,0 +1,41 @@
+    version: '3.8'
+
+    services:
+      recipeshare:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        ports:
+          - "8080:8080"
+        environment:
+          ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=RecipeShareDb;User Id=sa;Password=password123!;TrustServerCertificate=true;"
+          Jwt__SecretKey: "jipkX4tjA55ZfOdmNyVQj4pqeujsx4zo!"
+          Jwt__Issuer: "RecipeShareApp"
+          Jwt__Audience: "RecipeShareUsers"
+          Jwt__ExpiryMinutes: "60"
+          ASPNETCORE_ENVIRONMENT: "Development"
+
+        depends_on:
+          sqlserver:
+            condition: service_healthy # Wait for SQL Server health check to pass
+
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        environment:
+          ACCEPT_EULA: "Y"
+          SA_PASSWORD: "password123!" # Ensure this is a strong password and matches everywhere!
+        ports:
+          - "1433:1433"
+        volumes:
+          - sql_data:/var/opt/mssql
+          - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql # <--- NEW LINE: Mount the init script
+
+        healthcheck:
+          test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "SA", "-P", "password123!", "-Q", "SELECT 1"]
+          interval: 10s
+          timeout: 5s
+          retries: 20
+          start_period: 60s # Give it a full minute to boot
+
+    volumes:
+      sql_data:

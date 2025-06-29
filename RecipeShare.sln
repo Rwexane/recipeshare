@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeShare.API", "RecipeShare.API\RecipeShare.API.csproj", "{DEC0401A-1FCB-443A-9872-3D5AD4DD5CDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeShare.Domain", "RecipeShare.Domain\RecipeShare.Domain.csproj", "{8F1151B5-5726-4A8C-8865-75776511E61A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeShare.Application", "RecipeShare.Application\RecipeShare.Application.csproj", "{79F93195-C8EC-46A6-B87C-56351E53153B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeShare.Infrastructure", "RecipeShare.Infrastructure\RecipeShare.Infrastructure.csproj", "{32550E23-8308-44B8-989E-69DE7E3A0592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeShare.Tests", "RecipeShare.Tests\RecipeShare.Tests.csproj", "{9040736D-4FF0-4A8B-AD00-944F66A029EC}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "RecipeShareClientV2", "RecipeShareClientV2\", "{A3790E3E-65B7-2E5E-CA69-5DD2C05D0B17}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_65231"
+		Debug.AspNetCompiler.PhysicalPath = "RecipeShareClientV2\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_65231\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_65231"
+		Release.AspNetCompiler.PhysicalPath = "RecipeShareClientV2\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_65231\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "65231"
+		SlnRelativePath = "RecipeShareClientV2\"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeShare.Benchmarks", "RecipeShare.Benchmarks\RecipeShare.Benchmarks.csproj", "{7B985450-2CB2-4024-A8FB-C5B59CFE8FEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEC0401A-1FCB-443A-9872-3D5AD4DD5CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC0401A-1FCB-443A-9872-3D5AD4DD5CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC0401A-1FCB-443A-9872-3D5AD4DD5CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC0401A-1FCB-443A-9872-3D5AD4DD5CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F1151B5-5726-4A8C-8865-75776511E61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F1151B5-5726-4A8C-8865-75776511E61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F1151B5-5726-4A8C-8865-75776511E61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F1151B5-5726-4A8C-8865-75776511E61A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79F93195-C8EC-46A6-B87C-56351E53153B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79F93195-C8EC-46A6-B87C-56351E53153B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79F93195-C8EC-46A6-B87C-56351E53153B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79F93195-C8EC-46A6-B87C-56351E53153B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32550E23-8308-44B8-989E-69DE7E3A0592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32550E23-8308-44B8-989E-69DE7E3A0592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32550E23-8308-44B8-989E-69DE7E3A0592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32550E23-8308-44B8-989E-69DE7E3A0592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9040736D-4FF0-4A8B-AD00-944F66A029EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9040736D-4FF0-4A8B-AD00-944F66A029EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9040736D-4FF0-4A8B-AD00-944F66A029EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9040736D-4FF0-4A8B-AD00-944F66A029EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3790E3E-65B7-2E5E-CA69-5DD2C05D0B17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3790E3E-65B7-2E5E-CA69-5DD2C05D0B17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3790E3E-65B7-2E5E-CA69-5DD2C05D0B17}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3790E3E-65B7-2E5E-CA69-5DD2C05D0B17}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{7B985450-2CB2-4024-A8FB-C5B59CFE8FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B985450-2CB2-4024-A8FB-C5B59CFE8FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B985450-2CB2-4024-A8FB-C5B59CFE8FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B985450-2CB2-4024-A8FB-C5B59CFE8FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE83ED14-A283-47E0-94B7-5EBC2E9F673D}
+	EndGlobalSection
+EndGlobal
