@@ -1,4 +1,4 @@
-name: Build & Push Docker Image
+name: Build, Test & Push Docker Image
 
 on:
   push:
@@ -13,6 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4 # Action to checkout your repository code
 
+    # --- User's requested ls -la steps for debugging ---
     - name: List files in root
       run: ls -la
 
@@ -20,7 +21,25 @@ jobs:
       run: ls -la RecipeShareClientV2
 
     - name: List contents of Angular dist folder (if build succeeded)
+      # '|| true' ensures the step doesn't fail the workflow if the dist folder isn't found yet
       run: ls -la RecipeShareClientV2/dist || true
+    # --- End of user's ls -la steps ---
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4 # Action to set up .NET SDK
+      with:
+        dotnet-version: '8.0.x' # Specify your .NET SDK version (e.g., 8.0.x)
+
+    - name: Restore .NET tools
+      run: dotnet tool restore # Restore any .NET CLI tools (like EF Core tools)
+
+    - name: Run .NET Tests
+      # Ensure this path is correct relative to the repository root
+      # (e.g., if RecipeShare.Tests is directly under the root, use ./RecipeShare.Tests/RecipeShare.Tests.csproj)
+      run: dotnet test ./RecipeShare.Tests/RecipeShare.Tests.csproj
+      # The working-directory is typically not needed if the path is relative from the root,
+      # but you can add it if your setup requires it, e.g.:
+      # working-directory: RecipeShare # If your projects are nested inside a 'RecipeShare' folder at repo root
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3 # Sets up Docker Buildx for multi-platform builds
@@ -38,11 +57,6 @@ jobs:
         file: ./Dockerfile # Path to your Dockerfile
         push: true # Push the image to Docker Hub
         tags: ${{ secrets.DOCKER_USERNAME }}/recipeshare:latest # Your Docker Hub username/image_name:tag
+        # Example tag: yourdockerhubusername/recipeshare:latest
         cache-from: type=gha # Cache layers to speed up builds
         cache-to: type=gha,mode=max
-
-    # Optional: Add a step to run tests if you have any
-    # - name: Run .NET Tests (Example)
-    #   run: |
-    #     cd RecipeShare.API # Or the folder containing your test project
-    #     dotnet test
