@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RecipeShare.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+115b3aee96bcc7a3de5f906b55a43f0a0439a9ed")]
 [assembly: System.Reflection.AssemblyProductAttribute("RecipeShare.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RecipeShare.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

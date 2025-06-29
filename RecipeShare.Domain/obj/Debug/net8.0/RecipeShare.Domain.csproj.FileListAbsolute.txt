@@ -5,6 +5,7 @@ C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.G
 C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.AssemblyInfoInputs.cache
 C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.AssemblyInfo.cs
 C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.csproj.CoreCompileInputs.cache
+C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.sourcelink.json
 C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.dll
 C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\refint\RecipeShare.Domain.dll
 C:\Projects\RecipeShare\RecipeShare.Domain\obj\Debug\net8.0\RecipeShare.Domain.pdb

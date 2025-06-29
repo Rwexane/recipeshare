@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -9,108 +10,121 @@ using RecipeShare.Infrastructure.Repositories;
 using RecipeShare.Infrastructure.Services;
 using System.Text;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// CORS
-builder.Services.AddCors(options =>
+namespace RecipeShare.API
 {
-    options.AddPolicy("AllowAll", policy =>
+    public class Program
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
-});
-
-// Controllers
-builder.Services.AddControllers();
-
-// EF Core setup (SQL Server)
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-        sqlOptions =>
+        public static void Main(string[] args)
         {
-            // Enable retry logic for transient failures (e.g., during SQL Server startup)
-            sqlOptions.EnableRetryOnFailure(
-                maxRetryCount: 10,
-                maxRetryDelay: TimeSpan.FromSeconds(30),
-                errorNumbersToAdd: null
-            );
-        }));
+            var builder = WebApplication.CreateBuilder(args);
+            var isIntegrationTest = builder.Environment.EnvironmentName == "IntegrationTest";
 
-// Dependency Injection
-builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
-builder.Services.AddScoped<IRecipeService, RecipeService>();
-builder.Services.AddScoped<JwtHelper>();
+            // Add services to the container.
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
-// Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
 
-// JWT Authentication
-var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:SecretKey"]);
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.RequireHttpsMetadata = false;
-        options.SaveToken = true;
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(key),
+            // ? Conditionally register DB provider
+            if (!isIntegrationTest)
+            {
+                builder.Services.AddDbContext<AppDbContext>(options =>
+                    options.UseSqlServer(
+                        builder.Configuration.GetConnectionString("DefaultConnection"),
+                        sqlOptions =>
+                        {
+                            sqlOptions.EnableRetryOnFailure(10, TimeSpan.FromSeconds(30), null);
+                            sqlOptions.MigrationsAssembly(typeof(AppDbContext).Assembly.GetName().Name);
+                        }));
+            }
 
-            RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        };
-    });
+            // Dependency Injection
+            builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
+            builder.Services.AddScoped<IRecipeService, RecipeService>();
+            builder.Services.AddScoped<JwtHelper>();
 
-builder.Services.AddAuthorization();
+            // ? Authentication
+            if (isIntegrationTest)
+            {
+                // Fake test authentication
+                builder.Services.AddAuthentication("Test")
+                    .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>("Test", options => { });
 
-var app = builder.Build();
+                builder.Services.AddAuthorization();
+            }
+            else
+            {
+                var secretKey = builder.Configuration["Jwt:SecretKey"]
+                    ?? throw new InvalidOperationException("JWT SecretKey is not configured.");
+                var key = Encoding.ASCII.GetBytes(secretKey);
 
-// Development tools
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+                builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.RequireHttpsMetadata = false;
+                        options.SaveToken = true;
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateLifetime = true,
+                            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                            ValidAudience = builder.Configuration["Jwt:Audience"],
+                            IssuerSigningKey = new SymmetricSecurityKey(key),
+                            RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+                        };
+                    });
 
-//app.UseHttpsRedirection();
+                builder.Services.AddAuthorization();
+            }
 
-app.UseCors("AllowAll");
+            var app = builder.Build();
 
-app.UseAuthentication();
-app.UseAuthorization();
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
-// Serve Angular static files
-app.UseDefaultFiles();
-app.UseStaticFiles();
+            app.UseCors("AllowAll");
 
-// Map API endpoints
-app.MapControllers();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-// Fallback to index.html for Angular routing
-app.MapFallbackToFile("index.html");
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
-// Apply database migrations on application startup
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        var dbContext = services.GetRequiredService<AppDbContext>();
-        // Ensure the database is created and all pending migrations are applied
-        dbContext.Database.Migrate();
-        Console.WriteLine("Database migrations applied successfully.");
+            app.MapControllers();
+            app.MapFallbackToFile("index.html");
+
+            // ? Apply migrations only in real env
+            if (!isIntegrationTest)
+            {
+                using var scope = app.Services.CreateScope();
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var dbContext = services.GetRequiredService<AppDbContext>();
+                    dbContext.Database.Migrate();
+                    Console.WriteLine("Database migrations applied successfully.");
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while applying database migrations.");
+                }
+            }
+
+            app.Run();
+        }
     }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred while applying database migrations.");
-    }
 }
-
-app.Run();

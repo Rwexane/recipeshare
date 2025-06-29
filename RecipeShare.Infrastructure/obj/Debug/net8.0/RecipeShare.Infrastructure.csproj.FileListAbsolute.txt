@@ -11,6 +11,7 @@ C:\Projects\RecipeShare\RecipeShare.Infrastructure\obj\Debug\net8.0\RecipeShare.
 C:\Projects\RecipeShare\RecipeShare.Infrastructure\obj\Debug\net8.0\RecipeShare.Infrastructure.AssemblyInfoInputs.cache
 C:\Projects\RecipeShare\RecipeShare.Infrastructure\obj\Debug\net8.0\RecipeShare.Infrastructure.AssemblyInfo.cs
 C:\Projects\RecipeShare\RecipeShare.Infrastructure\obj\Debug\net8.0\RecipeShare.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Projects\RecipeShare\RecipeShare.Infrastructure\obj\Debug\net8.0\RecipeShare.Infrastructure.sourcelink.json
 C:\Projects\RecipeShare\RecipeShare.Infrastructure\obj\Debug\net8.0\RecipeSh.02771789.Up2Date
 C:\Projects\RecipeShare\RecipeShare.Infrastructure\obj\Debug\net8.0\RecipeShare.Infrastructure.dll
 C:\Projects\RecipeShare\RecipeShare.Infrastructure\obj\Debug\net8.0\refint\RecipeShare.Infrastructure.dll

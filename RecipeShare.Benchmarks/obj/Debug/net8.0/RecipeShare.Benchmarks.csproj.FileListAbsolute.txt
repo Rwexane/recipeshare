@@ -76,6 +76,7 @@ C:\Projects\RecipeShare\RecipeShare.Benchmarks\obj\Debug\net8.0\RecipeShare.Benc
 C:\Projects\RecipeShare\RecipeShare.Benchmarks\obj\Debug\net8.0\RecipeShare.Benchmarks.AssemblyInfoInputs.cache
 C:\Projects\RecipeShare\RecipeShare.Benchmarks\obj\Debug\net8.0\RecipeShare.Benchmarks.AssemblyInfo.cs
 C:\Projects\RecipeShare\RecipeShare.Benchmarks\obj\Debug\net8.0\RecipeShare.Benchmarks.csproj.CoreCompileInputs.cache
+C:\Projects\RecipeShare\RecipeShare.Benchmarks\obj\Debug\net8.0\RecipeShare.Benchmarks.sourcelink.json
 C:\Projects\RecipeShare\RecipeShare.Benchmarks\obj\Debug\net8.0\RecipeSh.2270011C.Up2Date
 C:\Projects\RecipeShare\RecipeShare.Benchmarks\obj\Debug\net8.0\RecipeShare.Benchmarks.dll
 C:\Projects\RecipeShare\RecipeShare.Benchmarks\obj\Debug\net8.0\refint\RecipeShare.Benchmarks.dll

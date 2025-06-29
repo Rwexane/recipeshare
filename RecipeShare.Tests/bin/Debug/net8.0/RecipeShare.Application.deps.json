@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "RecipeShare.Application/1.0.0": {
+        "dependencies": {
+          "RecipeShare.Domain": "1.0.0"
+        },
+        "runtime": {
+          "RecipeShare.Application.dll": {}
+        }
+      },
+      "RecipeShare.Domain/1.0.0": {
+        "runtime": {
+          "RecipeShare.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RecipeShare.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RecipeShare.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "RecipeShare.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Projects\\RecipeShare\\RecipeShare.API",
+  "RecipeShare.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Projects\\RecipeShare\\RecipeShare.Application",
+  "RecipeShare.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Projects\\RecipeShare\\RecipeShare.Domain",
+  "RecipeShare.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Projects\\RecipeShare\\RecipeShare.Infrastructure"
+}
