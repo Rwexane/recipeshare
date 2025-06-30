@@ -1,6 +1,33 @@
-# ??? RecipeShare
+# RecipeShare App
 
-A simple RESTful API and Angular app for creating and managing cooking recipes.
+RecipeShare is a full-stack application that allows users to create, browse, and manage recipes. It is built with an Angular frontend and a .NET 8 Web API backend, using SQL Server for persistence.
+
+## 🏗 Architecture Overview
+
+```text
+┌──────────────────────────┐
+│       Angular Frontend   │
+│ (RecipeShareClientV2)    │
+│                          │
+│ • Login                  │
+│ • Recipe list/form       │
+│ • Auth via JWT           │
+└──────────┬───────────────┘
+           │ HTTP (API + Static files)
+┌──────────▼───────────────┐
+│        ASP.NET Core API  │
+│    (RecipeShare.API)     │
+│                          │
+│ • JWT Authentication     │
+│ • Controllers + Services │
+│ • Entity Framework Core  │
+└──────────┬───────────────┘
+           │ SQL
+┌──────────▼───────────────┐
+│        SQL Server DB     │
+│  (recipes, users, etc.)  │
+└──────────────────────────┘
+
 
 ## ? Features
 
