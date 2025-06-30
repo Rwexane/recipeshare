@@ -2,7 +2,13 @@
 
 RecipeShare is a full-stack application that allows users to create, browse, and manage recipes. It is built with an Angular frontend and a .NET 8 Web API backend, using SQL Server for persistence.
 
+## ?? Benchmark Results
+
+![Performance Test Results for GET /api/recipes](assets/benchmark.png)
+
+
 ## 🏗 Architecture Overview
+
 
 ```text
 ┌──────────────────────────┐
@@ -37,9 +43,5 @@ RecipeShare is a full-stack application that allows users to create, browse, and
 - ? Client-side Angular UI
 - ? Server-side and client-side validation
 - ? Unit tests with xUnit & Moq
-
-## ?? Benchmark Results
-
-![Performance Test Results for GET /api/recipes](assets/benchmark.png)
 
 **500 GET calls to `/api/recipes` in Release mode**
